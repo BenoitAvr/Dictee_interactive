@@ -26,7 +26,7 @@ export default function Helper({ typeError }: HelperProps) {
   const { state } = useDictationContext();
   const [helperData, setHelperData] = useState<HelperData | null>(null);
   const [shouldShow, setShouldShow] = useState(false);
-  const timeoutRef = useRef<NodeJS.Timeout>();
+  const timeoutRef = useRef<NodeJS.Timeout | undefined>(undefined);
 
   const removePunctuation = (str: string): string => {
     return str.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "");

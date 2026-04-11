@@ -18,7 +18,7 @@ export const useDictation = (initialDictationData: dictation) => {
   // Références et session
   const { data: session } = useSession();
   const scoreSubmittedRef = useRef(false);
-  const lastIncorrectWord = useRef<number>();
+  const lastIncorrectWord = useRef<number | undefined>(undefined);
   
   // Hooks personnalisés
   const { calculateScore, calculateScoreBonus } = useScoreCalculation(state.baseScore);
