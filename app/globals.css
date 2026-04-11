@@ -1,10 +1,20 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* 1. TOUJOURS EN PREMIER : imports */
+@import "tailwindcss";
 
 
-@import url('https://fonts.googleapis.com/css2?family=Kalam&display=swap');
+/* 2. Ensuite @source si nécessaire */
+@source "../src";
 
+/* 3. Ensuite @theme */
+@theme {
+  --animate-shake: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-4px); }
+    20%, 40%, 60%, 80% { transform: translateX(4px); }
+  }
+}
 
 :root {
   --foreground-rgb: 0, 0, 0;
@@ -26,13 +36,9 @@
   }
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap');
-.font-space-grotesk {
-  font-family: 'Space Grotesk', sans-serif;
-}
-
-@import url('https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500&display=swap');
+.font-space-grotesk { font-family: 'Space Grotesk', sans-serif; }
 .font-newsreader { font-family: 'Newsreader', serif; }
+
 
 .App-body {
   background-color: #fbfbfb;

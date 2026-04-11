@@ -18,7 +18,7 @@ export default async function Home() {
             <Image
               src="/discord-logo_3.png"
               alt="Logo Discord"
-              layout="fill"
+              fill
               objectFit="contain"
               className="bg-gray-900"
             />

@@ -2,28 +2,23 @@ import { getToken } from 'next-auth/jwt';
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
-// Liste des routes API publiques
 const PUBLIC_ROUTES = [
-  '/api/scores',  // vos routes qui n'ont pas besoin d'authentification
-  // ajoutez d'autres routes publiques ici
+  '/api/scores',
 ];
 
-export async function middleware(request: NextRequest) {
-  // Ignorer les routes d'authentification
+export async function proxy(request: NextRequest): Promise<NextResponse> {
   if (request.nextUrl.pathname.startsWith('/api/auth')) {
     return NextResponse.next();
   }
 
-  // Vérifier si la route est publique
-  if (PUBLIC_ROUTES.some(route => request.nextUrl.pathname.startsWith(route))) {
+  if (PUBLIC_ROUTES.some((route: string) => request.nextUrl.pathname.startsWith(route))) {
     return NextResponse.next();
   }
 
-  // Pour toutes les autres routes API
   if (request.nextUrl.pathname.startsWith('/api/')) {
     const token = await getToken({ 
       req: request,
-      secret: process.env.SECRET 
+      secret: process.env.SECRET,
     });
 
     if (!token) {
@@ -31,9 +26,7 @@ export async function middleware(request: NextRequest) {
         JSON.stringify({ error: 'Non authentifié' }),
         {
           status: 401,
-          headers: {
-            'Content-Type': 'application/json'
-          }
+          headers: { 'Content-Type': 'application/json' },
         }
       );
     }
@@ -43,7 +36,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: [
-    '/api/:path*'
-  ]
+  matcher: ['/api/:path*'],
 };

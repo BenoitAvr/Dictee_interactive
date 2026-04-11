@@ -39,9 +39,8 @@ export default function CardDictation({ initialDictationData, bestScore }: Props
                 <Image
                     src={`/dictee_image/${encodeURIComponent(initialDictationData.title)}.jpg`}
                     alt={initialDictationData.title}
-                    layout="fill"
-                    objectFit="cover"
-                    objectPosition="center"
+                    fill
+                    style={{ objectFit: "cover", objectPosition: "center" }}
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
 
