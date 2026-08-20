@@ -1,8 +1,7 @@
 // navbar.tsx
 import React from "react";
-import { getServerSession } from "next-auth";
+import { auth } from "@/auth";
 import { User } from '@/src/auth/User';
-import { authConfig } from '@/pages/api/auth/[...nextauth]';
 import { LoginButton } from "@/src/auth/LoginButton";
 import { LogoutButton } from "@/src/auth/LogoutButton";
 import Link from 'next/link';
@@ -14,7 +13,7 @@ import '@/app/fontButterfly.css';
 
 
 export default async function Navbar() {
-    const session = await getServerSession(authConfig);
+    const session = await auth();
 
     return (
         <nav className="bg-gray-50 text-gray-800 py-5 shadow-md">

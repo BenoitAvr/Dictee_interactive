@@ -3,7 +3,6 @@ import { useDictationContext } from '@/app/context/DictationContext';
 import axios from 'axios';
 import { useSession } from 'next-auth/react';
 import './score.css';
-import Coinbase from 'next-auth/providers/coinbase';
 
 interface BestScore {
   id: string;

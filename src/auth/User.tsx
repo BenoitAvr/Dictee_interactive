@@ -1,11 +1,10 @@
-import { authConfig } from "@/pages/api/auth/[...nextauth]";
-import { Session, getServerSession } from "next-auth";
+import { auth } from "@/auth";
 import { LogoutButton } from "@/src/auth/LogoutButton";
 import '@/app/globals.css';
 import Image from 'next/image';
 
 export const User = async () => {
-    const session = await getServerSession(authConfig);
+    const session = await auth();
     if(!session?.user){
         return <p>No user</p>
     }
