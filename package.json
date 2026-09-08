@@ -1,7 +1,12 @@
 {
-  "name": "nextjs_learning",
-  "version": "0.1.0",
+  "name": "dictee-interactive",
+  "version": "1.0.0",
   "private": true,
+  "description": "Interactive French dictation app with real-time spelling feedback",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/BenoitAvr/Dictee_interactive.git"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "prisma generate && next build",
