@@ -1,7 +1,7 @@
 // pages/api/auth/signup.ts
 import { NextApiRequest, NextApiResponse } from 'next';
 import { hash } from 'bcrypt';
-import prisma from '@/src/lib/prisma';
+import prisma from '@/app/lib/prisma';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     if (req.method !== 'POST') {

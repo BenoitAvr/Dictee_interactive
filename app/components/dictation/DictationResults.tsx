@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import { RefreshCw, ArrowRight } from 'lucide-react';
 import { useSession } from 'next-auth/react';
-import { LoginButton } from '@/src/auth/LoginButton';
+import { LoginButton } from '@/app/components/auth/LoginButton';
 import { WordData } from '../../context/DictationContext';
 import { getWordStateClassName } from '../../utils/formatUtils';
 

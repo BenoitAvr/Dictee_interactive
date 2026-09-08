@@ -1,9 +1,9 @@
 // navbar.tsx
 import React from "react";
 import { auth } from "@/auth";
-import { User } from '@/src/auth/User';
-import { LoginButton } from "@/src/auth/LoginButton";
-import { LogoutButton } from "@/src/auth/LogoutButton";
+import { User } from '@/app/components/auth/User';
+import { LoginButton } from "@/app/components/auth/LoginButton";
+import { LogoutButton } from "@/app/components/auth/LogoutButton";
 import Link from 'next/link';
 import Image from 'next/image';
 import DropdownMenu from './dropdownMenu';

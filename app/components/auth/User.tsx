@@ -1,5 +1,5 @@
 import { auth } from "@/auth";
-import { LogoutButton } from "@/src/auth/LogoutButton";
+import { LogoutButton } from "@/app/components/auth/LogoutButton";
 import '@/app/globals.css';
 import Image from 'next/image';
 
