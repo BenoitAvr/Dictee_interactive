@@ -2,11 +2,11 @@
 
 import { useState } from 'react';
 
-interface StarterDictationLevelProps {
+interface StartDictationLevelProps {
   onLevelChange: (level: string) => void;
 }
 
-export default function StarterDictationLevel({ onLevelChange }: StarterDictationLevelProps) {
+export default function StartDictationLevel({ onLevelChange }: StartDictationLevelProps) {
   const [activeLevel, setActiveLevel] = useState<string>('');
 
   const handleLevelClick = (level: string) => {

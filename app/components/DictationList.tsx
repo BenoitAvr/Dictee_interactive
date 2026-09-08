@@ -1,8 +1,8 @@
 'use client'
 import { useState, useEffect, useRef } from 'react';
 import { useSession } from 'next-auth/react';
-import StarterDictationLevel from './components/startDictationLevel';
-import CardDictation from './card';
+import StartDictationLevel from './StartDictationLevel';
+import CardDictation from './CardDictation';
 import { dictation } from '@prisma/client';
 
 interface Props {
@@ -114,7 +114,7 @@ export default function DictationList({ initialDictations }: Props) {
                             Sélectionner votre niveau
                         </p>
                     </div>
-                    <StarterDictationLevel onLevelChange={handleLevelChange} />
+                    <StartDictationLevel onLevelChange={handleLevelChange} />
                     <div className={`mt-4 lg:mt-8 px-4 ${isExpanded ? 'block' : 'hidden'}`}>
                         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-6">

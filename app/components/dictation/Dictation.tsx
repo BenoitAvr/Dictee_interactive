@@ -7,9 +7,9 @@ import useDictation from '../../hooks/useDictation';
 import DictationHeader from './DictationHeader';
 import DictationResults from './DictationResults';
 import ProgressIndicator from './ProgressIndicator';
-import Audio from './audio';
+import Audio from './Audio';
 import GlobalInputComponent from './input/GlobalInputComponent';
-import Helper from './helper';
+import Helper from './Helper';
 
 interface DictationProps {
   initialDictationData: dictation;

@@ -1,8 +1,8 @@
 import { Kalam, Space_Grotesk, Newsreader, Inter} from "next/font/google";
 import "./globals.css";
-import SessionWrapper from './components/sessionWraper';
+import SessionWrapper from './components/SessionWrapper';
 import Navbar from './ui/navbar';
-import Footer from './footer';
+import Footer from './components/Footer';
 
 const kalam = Kalam({
   weight: ["400"],

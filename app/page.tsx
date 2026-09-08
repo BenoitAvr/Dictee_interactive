@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { getAllDictations } from '@/app/lib/data_prisma';
-import DictationList from './dictationList';
+import DictationList from './components/DictationList';
 import Image from 'next/image';
 
 export default async function HomePage() {
