@@ -39,3 +39,8 @@ next-env.d.ts
 SEED
 seed.js
 TODO
+
+# database dumps / backups
+DB/
+Backup_*.sql
+*.dump
