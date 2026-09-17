@@ -32,6 +32,9 @@ jobs:
       POSTGRES_URL_NON_POOLING: postgresql://postgres:postgres@localhost:5432/dictee
       NEXTAUTH_SECRET: ci-dummy-secret-not-used-anywhere
       NEXTAUTH_URL: http://localhost:3000
+      # Valeurs factices : seule leur présence est vérifiée au build.
+      GOOGLE_ID: ci-dummy-google-id
+      GOOGLE_SECRET: ci-dummy-google-secret
 
     steps:
       - name: Checkout
