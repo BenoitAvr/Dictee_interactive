@@ -46,6 +46,12 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      # Contournement d'un bug npm : les dépendances optionnelles natives de
+      # lightningcss/@tailwindcss ne sont pas installées quand le lockfile
+      # a été généré sur une autre plateforme (Windows -> Linux ici).
+      - name: Install native Linux binaries
+        run: npm install --no-save lightningcss-linux-x64-gnu @tailwindcss/oxide-linux-x64-gnu
+
       - name: Generate Prisma client
         run: npx prisma generate
 
