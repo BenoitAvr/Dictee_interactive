@@ -35,6 +35,8 @@ jobs:
       # Valeurs factices : seule leur présence est vérifiée au build.
       GOOGLE_ID: ci-dummy-google-id
       GOOGLE_SECRET: ci-dummy-google-secret
+      SECRET: ci-dummy-secret-not-used-anywhere
+      AUTH_SECRET: ci-dummy-secret-not-used-anywhere
 
     steps:
       - name: Checkout
@@ -44,16 +46,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: npm
+          cache: yarn
 
       - name: Install dependencies
-        run: npm ci
-
-      # Contournement d'un bug npm : les dépendances optionnelles natives de
-      # lightningcss/@tailwindcss ne sont pas installées quand le lockfile
-      # a été généré sur une autre plateforme (Windows -> Linux ici).
-      - name: Install native Linux binaries
-        run: npm install --no-save lightningcss-linux-x64-gnu @tailwindcss/oxide-linux-x64-gnu
+        run: yarn install --frozen-lockfile
 
       - name: Generate Prisma client
         run: npx prisma generate
@@ -69,4 +65,4 @@ jobs:
         run: npx tsc --noEmit
 
       - name: Build
-        run: npm run build
+        run: yarn build
