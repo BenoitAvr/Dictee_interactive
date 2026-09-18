@@ -38,6 +38,24 @@ yarn dev
 
 The app is available at [http://localhost:3000](http://localhost:3000).
 
+## Run with Docker
+
+Zero-install alternative: only Docker is required. The stack bundles the Next.js
+app and a local PostgreSQL, applies the Prisma schema at boot, and seeds a few
+demo dictations.
+
+```bash
+cp .env.docker.example .env.docker      # fill in real values (or keep the placeholders to browse the app without Google login)
+docker compose --env-file .env.docker up --build
+```
+
+Then open [http://localhost:3000](http://localhost:3000).
+
+- App container: multi-stage Node 22 Alpine image, running as a non-root user, serving the Next.js `standalone` build.
+- DB container: PostgreSQL 16 with a persistent volume (`db_data`).
+- Boot sequence: an entrypoint script syncs the Prisma schema (`db push`), seeds demo data (`prisma db seed`), then starts the server.
+- Google OAuth is optional locally — the placeholder credentials let the app boot and the credentials-based login still works.
+
 ### Environment variables
 
 | Variable                | Purpose                                  |

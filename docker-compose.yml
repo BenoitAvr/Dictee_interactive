@@ -1,0 +1,58 @@
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: dictee
+      POSTGRES_PASSWORD: dictee
+      POSTGRES_DB: dictee
+    volumes:
+      - db_data:/var/lib/postgresql/data
+      - ./docker-init.sql:/docker-entrypoint-initdb.d/10-init.sql:ro
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U dictee -d dictee"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  web:
+    build:
+      context: .
+      args:
+        GOOGLE_ID: ${GOOGLE_ID:-dummy-google-id}
+        GOOGLE_SECRET: ${GOOGLE_SECRET:-dummy-google-secret}
+        SECRET: ${SECRET:-dev-secret-change-me}
+        AUTH_SECRET: ${AUTH_SECRET:-dev-secret-change-me}
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      POSTGRES_URL: postgres://dictee:dictee@db:5432/dictee?sslmode=disable
+      NEXTAUTH_URL: http://localhost:3000
+      NEXT_PUBLIC_BASE_URL: http://localhost:3000
+      REACT_APP_BASE_URL: http://localhost:3000
+      SITE_URL: http://localhost:3000
+      # DB vide en dev : bootstrap le schema depuis schema.prisma.
+      PRISMA_DB_PUSH: "1"
+      # Insère un jeu de dictées de démo au premier boot (idempotent).
+      PRISMA_SEED: "1"
+      # NextAuth v5 refuse les hosts inconnus en prod ; on fait confiance en local.
+      AUTH_TRUST_HOST: "true"
+      # Secrets NextAuth / Google OAuth : à remplacer dans .env.docker
+      SECRET: ${SECRET:-dev-secret-change-me}
+      AUTH_SECRET: ${AUTH_SECRET:-dev-secret-change-me}
+      GOOGLE_ID: ${GOOGLE_ID:-dummy-google-id}
+      GOOGLE_SECRET: ${GOOGLE_SECRET:-dummy-google-secret}
+    ports:
+      - "3000:3000"
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://127.0.0.1:3000/ >/dev/null 2>&1 || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+volumes:
+  db_data:
